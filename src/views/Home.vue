@@ -9,7 +9,7 @@
         Turn : Player {{turnPlayer}} ({{turnPlayer == 1 ? 'X' : 'O' }})
       </div>
       <div class="refresh">
-        <span @click="refresh">Restart</span>
+        <span class="click-refresh" @click="refresh">Restart</span>
       </div>
     </div>
     <div class="tictactoe-board">
@@ -67,6 +67,9 @@
     padding: 25px;
     width: 50%;
     text-align: right;
+  }
+  .click-refresh {
+    cursor: pointer;
   }
   @media screen and (max-width: 768px){
     .turnbase-information {
