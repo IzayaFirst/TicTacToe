@@ -3,6 +3,10 @@
   <div>
     <div class="welcome-title">
       Welcome to tictactoe game
+      {{end}} {{winner}}
+    </div>
+    <div class="winner" v-if="end">
+      Player {{winner}} is the winner.
     </div>
     <div class="turnbase-information">
       <div class="turn">
@@ -38,7 +42,7 @@
       ...mapActions('TicTacToe', ['refresh'])
     },
     computed: {
-      ...mapGetters('TicTacToe', ['turnPlayer'])
+      ...mapGetters('TicTacToe', ['turnPlayer', 'end', 'winner',])
     }
   };
 </script>
@@ -47,6 +51,13 @@
     font-size: 32px;
     margin-top: 25px;
     text-align: center;
+  }
+  .winner {
+    color: red;
+    text-align: center;
+    padding: 15px;
+    font-size: 25px;
+    font-weight: 600;
   }
   .tictactoe-board {
     margin-top: 45px;

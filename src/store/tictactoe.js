@@ -21,6 +21,8 @@ const state = {
 const getters = {
   tictactoeBoard: state => state.tictactoeBoard,
   turnPlayer: state => state.turnPlayer,
+  end: state => state.end,
+  winner: state => state.winner,
 };
 
 const actions = {
@@ -48,13 +50,43 @@ const actions = {
       ['pos1', 'pos5', 'pos9'],
       ['pos3', 'pos5', 'pos7'],
     ]
+    let isPlayerSelected = 0
+    let isPlayer2Selected = 0
+    for(const win of winCase) {
+      for(const player of player1) {
+        if(win.indexOf(player) > -1) {
+          isPlayerSelected++
+        }
+      }
 
+      for(const player of player2) {
+        if(win.indexOf(player) > -1) {
+          isPlayer2Selected++
+        }
+      }
+      if (isPlayerSelected == 3) {
+        commit('SET_END', true)
+        commit('SET_WINNER', 1)
+        break;
+      } else if(isPlayer2Selected == 3) {
+        commit('SET_END', true)
+        commit('SET_WINNER', 2)
+        break;
+      } else {
+        isPlayerSelected = 0
+        isPlayer2Selected = 0
+      }
+    }
   },
   selectPostion({ state, commit, dispatch }, pos) {
     const {
       turnPlayer,
       tictactoeBoard,
+      end,
     } = state;
+    if(end) {
+      return
+    }
     const posistionKey = `pos${pos}`;
     if (tictactoeBoard[posistionKey] == 0) {
       const updateData = {
