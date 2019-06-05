@@ -3,7 +3,6 @@
   <div>
     <div class="welcome-title">
       Welcome to tictactoe game
-      {{end}} {{winner}}
     </div>
     <div class="winner" v-if="end">
       Player {{winner}} is the winner.
